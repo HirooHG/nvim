@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
-keymap.set("n", "<leader>q", ":wq")
+keymap.set("n", "<leader>q", ":wq<CR>")
 
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
