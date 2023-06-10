@@ -53,6 +53,13 @@ return require('packer').startup(function(use)
 		-- Snippets
 		{'L3MON4D3/LuaSnip'},             -- Required
 		{'rafamadriz/friendly-snippets'}, -- Optional
+
+    -- comments
+    use 'tpope/vim-surround',
+    use {
+      'numToStr/Comment.nvim',
+      config = function() require('Comment').setup() end
+    }
 	}
 }
 end)
