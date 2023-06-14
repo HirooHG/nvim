@@ -8,6 +8,7 @@ keymap.set("n", "<leader>pv", ":Neotree<CR>")
 
 -- save and quit
 keymap.set("n", "<leader>q", ":wq<CR>")
+keymap.set("n", "<leader>v", "<C-v>")
 
 -- move paragraph of text
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
