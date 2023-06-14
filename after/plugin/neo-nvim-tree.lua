@@ -2,7 +2,7 @@
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 require("neo-tree").setup({
-  close_if_last_window = true,
+  close_if_last_window = false,
   popup_border_style = "rounded",
   enable_git_status = true,
   enable_diagnostics = true,
@@ -78,13 +78,12 @@ require("neo-tree").setup({
       },
       ["<2-LeftMouse>"] = "open",
       ["<cr>"] = "open",
+      ["<C-c>"] = "open",
       ["<esc>"] = "revert_preview",
       ["P"] = { "toggle_preview", config = { use_float = true } },
       ["l"] = "focus_preview",
       ["S"] = "open_split",
       ["s"] = "open_vsplit",
-      -- ["S"] = "split_with_window_picker",
-      -- ["s"] = "vsplit_with_window_picker",
       ["t"] = "open_tabnew",
       -- ["<cr>"] = "open_drop",
       -- ["t"] = "open_tab_drop",

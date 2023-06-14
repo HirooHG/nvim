@@ -4,7 +4,7 @@ local keymap = vim.keymap
 
 -- packages
 keymap.set("n", "<leader>t", ":Neotree<CR>")
-keymap.set("n", "<leader>pv", ":Neotree<CR>")
+keymap.set("n", "<leader>pv", vim.cmd.Exp)
 
 -- save and quit
 keymap.set("n", "<leader>q", ":wq<CR>")
