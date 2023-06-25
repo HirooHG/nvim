@@ -22,6 +22,7 @@ opt.incsearch = true
 
 opt.clipboard = "unnamedplus"
 opt.mouse = "a"
+opt.nrformats = { "alpha", "octal", "hex" }
 
 opt.termguicolors = true
 
