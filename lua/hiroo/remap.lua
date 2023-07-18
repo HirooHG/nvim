@@ -6,6 +6,16 @@ local keymap = vim.keymap
 keymap.set("n", "<leader>t", ":Neotree<CR>")
 keymap.set("n", "<leader>pv", vim.cmd.Exp)
 
+-- Flutter
+keymap.set("n", "<leader>fpg", ":FlutterPubGet<CR>")
+keymap.set("n", "<leader>fpu", ":FlutterPubUpgrade<CR>")
+keymap.set("n", "<leader>fq", ":FlutterQuit<CR>")
+keymap.set("n", "<leader>fru", ":FlutterRun<CR>")
+keymap.set("n", "<leader>fres", ":FlutterRestart<CR>")
+keymap.set("n", "<leader>frel", ":FlutterReload<CR>")
+keymap.set("n", "<leader>fd", ":FlutterDevices<CR>")
+keymap.set("n", "<leader>fe", ":FlutterEmulators<CR>")
+
 -- save and quit
 keymap.set("n", "<leader>q", ":wq<CR>")
 keymap.set("n", "<leader>v", "<C-v>")
