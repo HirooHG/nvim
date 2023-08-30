@@ -7,4 +7,4 @@ require'FTerm'.setup({
 })
 
 vim.keymap.set('n', '<leader>z', '<CMD>lua require("FTerm").toggle()<CR>')
-vim.keymap.set('t', '<leader>e', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('t', '<C-e>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
