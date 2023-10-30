@@ -2,6 +2,9 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
+        keys = {
+          { "<leader>fc", "<cmd>Telescope flutter commands<cr>", mode = "n" }
+        },
         dependencies = {
             { "nvim-lua/popup.nvim" },
             { "nvim-lua/plenary.nvim" },
@@ -68,6 +71,7 @@ return {
             require('telescope').load_extension('session-lens')
             require('telescope').load_extension('git_worktree')
             require("telescope").load_extension("ui-select")
+            require('telescope').load_extension('flutter')
         end,
         event = "VeryLazy"
     },

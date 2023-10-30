@@ -1,6 +1,10 @@
 return {
   'akinsho/flutter-tools.nvim',
   lazy = false,
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'stevearc/dressing.nvim'
+  },
   keys = {
     { "<leader>fpg", "<cmd>FlutterPubGet<CR>", mode = "n"},
     { "<leader>fpu", "<cmd>FlutterPubUpgrade<CR>", mode = "n" },
@@ -22,6 +26,15 @@ return {
         device = false,
         project_config = false,
       }
+    },
+    debugger = {
+      enabled = true,
+      run_via_dap = false,
+      exception_breakpoints = {},
+      register_configurations = function(_)
+        require("dap").configurations.dart = {}
+        require("dap.ext.vscode").load_launchjs()
+      end,
     },
     flutter_path = "/home/hiroo/dev/flutter/bin/flutter",
     flutter_lookup_cmd = nil,
@@ -71,6 +84,6 @@ return {
         enableSnippets = true,
         updateImportsOnRename = true, -- Whether to update imports and other directives when files are renamed. Required for `FlutterRename` command.
       }
-    }
+    },
   }
 }
