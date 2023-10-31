@@ -3,7 +3,11 @@ return {
 		'morhetz/gruvbox',
 		as = 'gruvbox',
 		config = function()
+      local api = vim.api
 			vim.cmd('colorscheme gruvbox')
+
+      api.nvim_set_hl(0, "Normal", { bg = "none" })
+      api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 		end
 	},
   {
