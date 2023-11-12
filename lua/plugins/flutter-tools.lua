@@ -13,12 +13,18 @@ return {
     { "<leader>fres", "<cmd>FlutterRestart<CR>", mode = "n" },
     { "<leader>frel", "<cmd>FlutterReload<CR>", mode = "n" },
     { "<leader>fd", "<cmd>FlutterDevices<CR>", mode = "n" },
-    { "<leader>fe", "<cmd>FlutterEmulators<CR>", mode = "n" }
-  },
-  config = {
-    ui = {
+    { "<leader>fe", "<cmd>FlutterEmulators<CR>", mode = "n" },
+    { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", mode = "n" },
+    { "<leader>fo", "<cmd>lua vim.lsp.buf.format()<CR>", mode = "n" },
+    { "<leader>fi", "<cmd>lua vim.lsp.buf.implementation()<CR>", mode = "n" },
+    { "<leader>fr", "<cmd>lua vim.lsp.buf.references()<CR>", mode = "n" },
+    { "<leader>de", "<cmd>lua vim.lsp.buf.definition()<CR>", mode = "n" },
+    { "<leader>re", "<cmd>lua vim.lsp.buf.rename()<CR>", mode = "n" },
+},
+config = {
+  ui = {
       border = "rounded",
-      notification_style = 'native' -- | 'plugin'
+      notification_style = 'native'
     },
     decorations = {
       statusline = {
@@ -29,11 +35,10 @@ return {
     },
     debugger = {
       enabled = true,
-      run_via_dap = false,
+      run_via_dap = true,
       exception_breakpoints = {},
       register_configurations = function(_)
-        require("dap").configurations.dart = {}
-        require("dap.ext.vscode").load_launchjs()
+        require("nvim-dap-projects").search_project_config()
       end,
     },
     flutter_path = "/home/hiroo/dev/flutter/bin/flutter",
@@ -43,35 +48,32 @@ return {
       enabled = false,
     },
     closing_tags = {
-      highlight = "ErrorMsg", -- highlight for the closing tag
-      prefix = ">", -- character to use for close tag e.g. > Widget
-      enabled = true -- set to false to disable
+      highlight = "ErrorMsg",
+      prefix = ">",
+      enabled = true
     },
     dev_log = {
-      enabled = true,
-      notify_errors = false, -- if there is an error whilst running then notify the user
-      open_cmd = "tabedit", -- command to use to open the log buffer
+      enabled = false,
+      notify_errors = false,
+      open_cmd = "tabedit",
     },
     dev_tools = {
-      autostart = false, -- autostart devtools server if not detected
-      auto_open_browser = false, -- Automatically opens devtools in the browser
+      autostart = false,
+      auto_open_browser = false,
     },
     outline = {
-      open_cmd = "30vnew", -- command to use to open the outline buffer
-      auto_open = false -- if true this will open the outline automatically when it is first populated
+      open_cmd = "30vnew",
+      auto_open = false
     },
     lsp = {
-      color = { -- show the derived colours for dart variables
-        enabled = false, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
-        background = false, -- highlight the background
-        background_color = nil, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
-        foreground = false, -- highlight the foreground
-        virtual_text = true, -- show the highlight using virtual text
-        virtual_text_str = "■", -- the virtual text character to highlight
+      color = {
+        enabled = true,
+        background = false,
+        background_color = { r = 19, g = 17, b = 24},
+        foreground = false,
+        virtual_text = true,
+        virtual_text_str = "■",
       },
-      -- on_attach = my_custom_on_attach,
-      -- capabilities = my_custom_capabilities -- e.g. lsp_status capabilities
-      --- OR you can specify a function to deactivate or change or control how the config is created
       capabilities = function(config)
         config.specificThingIDontWant = false
         return config
@@ -79,10 +81,9 @@ return {
       settings = {
         showTodos = true,
         completeFunctionCalls = true,
-        -- analysisExcludedFolders = {"<path-to-flutter-sdk-packages>"},
-        renameFilesWithClasses = "prompt", -- "always"
+        renameFilesWithClasses = "prompt",
         enableSnippets = true,
-        updateImportsOnRename = true, -- Whether to update imports and other directives when files are renamed. Required for `FlutterRename` command.
+        updateImportsOnRename = true,
       }
     },
   }

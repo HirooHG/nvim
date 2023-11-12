@@ -21,7 +21,7 @@ opt.hlsearch = false
 opt.incsearch = true
 
 opt.clipboard = "unnamedplus"
-opt.mouse = ""
+opt.mouse = "a"
 
 opt.termguicolors = true
 
