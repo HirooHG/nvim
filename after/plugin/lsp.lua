@@ -1,7 +1,6 @@
 local lsp_zero = require('lsp-zero')
 local cmp = require('cmp')
 local map = vim.keymap.set
-local fn = vim.fn
 local cmp_select = { behavior = cmp.SelectBehavior.Replace }
 local cmp_action = require('lsp-zero').cmp_action()
 local rust_tools = require('rust-tools')
@@ -198,21 +197,3 @@ rust_tools.setup({
     }
   }
 })
-
-dap.adapters.lldb = {
-  type = "executable",
-  command = "/usr/bin/lldb-vscode",
-  name = "lldb"
-}
-
-dap.configurations.rust = {
-  {
-    name = "Run",
-    type = "lldb",
-    request = "launch",
-    program = function()
-        return fn.getcwd() .. "/src/${workspaceFolder}.rs"
-    end,
-    cwd = "${workspaceFolder}",
-  }
-}

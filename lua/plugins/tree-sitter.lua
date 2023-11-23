@@ -6,7 +6,18 @@ return {
     end,
     config = function()
         require('nvim-treesitter.configs').setup {
-          ensure_installed = "all",
+          ensure_installed = {
+            "typescript",
+            "rust",
+            "dart",
+            "toml",
+            "c_sharp",
+            "css",
+            "scss",
+            "dockerfile",
+            "html",
+            "json"
+          },
           sync_install = false,
           auto_install = true,
           highlight = {

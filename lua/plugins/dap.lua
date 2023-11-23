@@ -13,4 +13,10 @@ return {
     },
     lazy = true
   },
+  {
+    'ldelossa/nvim-dap-projects',
+    keys = {
+      { '<leader>dp', '<cmd>lua require("nvim-dap-projects").search_project_config()<cr>', mode="n"}
+    }
+  }
 }
