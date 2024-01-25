@@ -14,12 +14,6 @@ return {
     { "<leader>frel", "<cmd>FlutterReload<CR>", mode = "n" },
     { "<leader>fd", "<cmd>FlutterDevices<CR>", mode = "n" },
     { "<leader>fe", "<cmd>FlutterEmulators<CR>", mode = "n" },
-    { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", mode = "n" },
-    { "<leader>fo", "<cmd>lua vim.lsp.buf.format()<CR>", mode = "n" },
-    { "<leader>fi", "<cmd>lua vim.lsp.buf.implementation()<CR>", mode = "n" },
-    { "<leader>fr", "<cmd>lua vim.lsp.buf.references()<CR>", mode = "n" },
-    { "<leader>de", "<cmd>lua vim.lsp.buf.definition()<CR>", mode = "n" },
-    { "<leader>re", "<cmd>lua vim.lsp.buf.rename()<CR>", mode = "n" },
 },
 config = {
   ui = {

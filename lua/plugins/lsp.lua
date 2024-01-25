@@ -1,8 +1,21 @@
 return {
   {
     "williamboman/mason.nvim",
+    dependencies = {
+      { "WhoIsSethDaniel/mason-tool-installer.nvim" }
+    },
     build = function()
-        pcall(vim.cmd, "MasonUpdate")
+      local mason = require("mason")
+      mason.setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          }
+        }
+      })
+      pcall(vim.cmd, "MasonUpdate")
     end,
     lazy = false
   },
@@ -30,28 +43,28 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-    {
+      {
         "j-hui/fidget.nvim",
         branch = "legacy",
         opts = {
           text = {
-              spinner = "dots",
-              done = "",
-              commenced = "Started",
-              completed = "Completed",
+            spinner = "dots",
+            done = "",
+            commenced = "Started",
+            completed = "Completed",
           },
           timer = {
-              spinner_rate = 100,
-              fidget_decay = 1500,
-              task_decay = 1200,
+            spinner_rate = 100,
+            fidget_decay = 1500,
+            task_decay = 1200,
           },
           fmt = {
-              leftpad = true,
-              stack_upwards = false,
+            leftpad = true,
+            stack_upwards = false,
           },
           window = {
-              relative = "editor",
-              blend = 0,
+            relative = "editor",
+            blend = 0,
           },
         },
       },
@@ -64,6 +77,13 @@ return {
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
+    keys = {
+      { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>",    mode = "n" },
+      { "<leader>fi", "<cmd>lua vim.lsp.buf.implementation()<CR>", mode = "n" },
+      { "<leader>fr", "<cmd>lua vim.lsp.buf.references()<CR>",     mode = "n" },
+      { "<leader>de", "<cmd>lua vim.lsp.buf.definition()<CR>",     mode = "n" },
+      { "<leader>re", "<cmd>lua vim.lsp.buf.rename()<CR>",         mode = "n" },
+    },
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
       'williamboman/mason-lspconfig.nvim',
