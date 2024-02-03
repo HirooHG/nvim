@@ -4,7 +4,6 @@ local map = vim.keymap.set
 local cmp_select = { behavior = cmp.SelectBehavior.Replace }
 local cmp_action = require('lsp-zero').cmp_action()
 local rust_tools = require('rust-tools')
-local dap = require("dap")
 
 require('mason-lspconfig').setup({
   ensure_installed = {

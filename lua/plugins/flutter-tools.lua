@@ -6,17 +6,17 @@ return {
     'stevearc/dressing.nvim'
   },
   keys = {
-    { "<leader>fpg", "<cmd>FlutterPubGet<CR>", mode = "n"},
-    { "<leader>fpu", "<cmd>FlutterPubUpgrade<CR>", mode = "n" },
-    { "<leader>fq", "<cmd>FlutterQuit<CR>", mode = "n" },
-    { "<leader>fru", "<cmd>FlutterRun<CR>", mode = "n" },
-    { "<leader>fres", "<cmd>FlutterRestart<CR>", mode = "n" },
-    { "<leader>frel", "<cmd>FlutterReload<CR>", mode = "n" },
-    { "<leader>fd", "<cmd>FlutterDevices<CR>", mode = "n" },
-    { "<leader>fe", "<cmd>FlutterEmulators<CR>", mode = "n" },
-},
-config = {
-  ui = {
+    { "<leader>fpg",  "<cmd>FlutterPubGet<CR>",     mode = "n" },
+    { "<leader>fpu",  "<cmd>FlutterPubUpgrade<CR>", mode = "n" },
+    { "<leader>fq",   "<cmd>FlutterQuit<CR>",       mode = "n" },
+    { "<leader>fru",  "<cmd>FlutterRun<CR>",        mode = "n" },
+    { "<leader>fres", "<cmd>FlutterRestart<CR>",    mode = "n" },
+    { "<leader>frel", "<cmd>FlutterReload<CR>",     mode = "n" },
+    { "<leader>fd",   "<cmd>FlutterDevices<CR>",    mode = "n" },
+    { "<leader>fe",   "<cmd>FlutterEmulators<CR>",  mode = "n" },
+  },
+  config = {
+    ui = {
       border = "rounded",
       notification_style = 'native'
     },
@@ -63,7 +63,7 @@ config = {
       color = {
         enabled = true,
         background = false,
-        background_color = { r = 19, g = 17, b = 24},
+        background_color = { r = 19, g = 17, b = 24 },
         foreground = false,
         virtual_text = true,
         virtual_text_str = "■",
