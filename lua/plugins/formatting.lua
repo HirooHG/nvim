@@ -8,6 +8,7 @@ return {
     local conform = require("conform")
     conform.setup({
       formatters_by_ft = {
+        angular = { "prettier" },
         javascript = { "prettier" },
         typescript = { "prettier" },
         javascriptreact = { "prettier" },
@@ -20,6 +21,7 @@ return {
         markdown = { "prettier" },
         python = { "isort", "black" },
         kotlin = { "ktlint" },
+        bash = { "shellharden" },
       },
       format_on_save = {
         lsp_fallback = true,

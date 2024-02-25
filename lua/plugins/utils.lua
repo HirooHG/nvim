@@ -52,23 +52,32 @@ return {
   },
   {
     'numToStr/Comment.nvim',
-    config = {
-      padding = true,  ---Add a space b/w comment and the line
-      sticky = true,   ---Whether the cursor should stay at its position
-      ignore = nil,    ---Lines to be ignored while (un)comment
-      toggler = {
-        line = 'gcc',  ---Line-comment toggle keymap
-        block = 'gbc', ---Block-comment toggle keymap
-      },
-      opleader = {
-        line = 'gc',  ---Line-comment keymap
-        block = 'gb', ---Block-comment keymap
-      },
-      extra = {
-        above = 'gcO', ---Add comment on the line above
-        below = 'gco', ---Add comment on the line below
-        eol = 'gcA',   ---Add comment at the end of line
-      },
-    }
+    config = function()
+      local comment = require("Comment")
+      local ft = require("Comment.ft")
+
+      local commentstr = "<!--%s-->"
+
+      ft.set("angular", { commentstr, commentstr })
+
+      comment.setup({
+        padding = true,  ---Add a space b/w comment and the line
+        sticky = true,   ---Whether the cursor should stay at its position
+        ignore = nil,    ---Lines to be ignored while (un)comment
+        toggler = {
+          line = 'gcc',  ---Line-comment toggle keymap
+          block = 'gbc', ---Block-comment toggle keymap
+        },
+        opleader = {
+          line = 'gc',  ---Line-comment keymap
+          block = 'gb', ---Block-comment keymap
+        },
+        extra = {
+          above = 'gcO', ---Add comment on the line above
+          below = 'gco', ---Add comment on the line below
+          eol = 'gcA',   ---Add comment at the end of line
+        },
+      })
+    end
   },
 }
