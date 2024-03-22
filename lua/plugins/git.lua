@@ -10,7 +10,7 @@ return {
       { "<leader>gst", ":Git stash -m",          mode = "n" },
       { "<leader>gcl", ":Git clone ",            mode = "n" },
       { "<leader>gb",  ":Git branch ",           mode = "n" },
-      { "<leader>g",   "<CMD>Git<CR>",           mode = "n" },
+      { "<leader>g",   ":Git ",                  mode = "n" },
       { "<leader>gi",  "<CMD>Git init<CR>",      mode = "n" },
       { "<leader>gps", "<CMD>Git push<CR>",      mode = "n" },
       { "<leader>gpl", "<CMD>Git pull<CR>",      mode = "n" },
