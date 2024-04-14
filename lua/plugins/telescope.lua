@@ -72,7 +72,6 @@ return {
       require('telescope').load_extension('git_worktree')
       require("telescope").load_extension("ui-select")
       require('telescope').load_extension('flutter')
-      require('telescope').load_extension('notify')
     end,
     event = "VeryLazy"
   },
