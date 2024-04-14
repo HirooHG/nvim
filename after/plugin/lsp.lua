@@ -13,7 +13,6 @@ require('mason-lspconfig').setup({
     'rust_analyzer',
     'tsserver',
     'angularls',
-    'csharp_ls',
     'cssls',
     'docker_compose_language_service',
     'dockerls',
