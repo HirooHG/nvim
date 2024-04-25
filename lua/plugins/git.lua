@@ -24,7 +24,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     keys = {
-      { "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>",              mode = "n" },
+      { "<leader>gh", "<cmd>Gitsigns preview_hunk<CR>",              mode = "n" },
       { "<leader>gt", "<cmd>Gitsigns toggle_current_line_blame<CR>", mode = "n" }
     },
     config = function()
