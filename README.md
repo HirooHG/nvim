@@ -1,2 +1,3 @@
 # nvim-conf
-Neovim configuration with lua and packer
+
+Neovim configuration with lua and lazy.nvim
