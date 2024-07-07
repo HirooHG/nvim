@@ -18,8 +18,6 @@ require('mason-lspconfig').setup({
     'dockerls',
     'html',
     'jsonls',
-    'kotlin_language_server',
-    'swift_mesonls',
     'vuels',
   },
   handlers = {
