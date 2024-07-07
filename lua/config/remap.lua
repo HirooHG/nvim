@@ -1,8 +1,7 @@
 local map = vim.keymap.set
 
 -- save and quit
-map("n", "<leader>w", "<cmd>w<CR>")
-map("n", "<leader>wq", "<cmd>wq<CR>")
+map("n", "<leader>w", "<cmd>wq<CR>")
 map("n", "<leader>q", "<cmd>q!<CR>")
 map("n", "<leader>v", "<C-v>")
 
