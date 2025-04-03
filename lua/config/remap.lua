@@ -1,5 +1,8 @@
 local map = vim.keymap.set
 
+-- SQL bug when control C is triggered
+vim.g.ftplugin_sql_omni_key = '<ESC>'
+
 -- save and quit
 map("n", "<leader>w", "<cmd>wq<CR>")
 map("n", "<leader>q", "<cmd>q!<CR>")
@@ -9,24 +12,24 @@ map("n", "<leader>v", "<C-v>")
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
--- keep the cursor center when J command
+-- Keep the cursor center when J command
 map("n", "J", "mzJ`z")
 
--- keep the cursor center when skipping paragraphs
+-- Keep the cursor center when skipping paragraphs
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
--- keep the cursor center when searching
+-- Keep the cursor center when searching
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
--- idk
+-- Idk
 map("n", "<leader>p", "\"_dP")
 
--- primeagen proof of culpability
+-- Primeagen proof of culpability
 map("n", "<C-c>", "<Esc>")
 
--- replace a word by overing it
+-- Replace a word by overiding it
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- make a file executable

@@ -29,4 +29,4 @@ opt.scrolloff = 8
 opt.isfname:append("@-@")
 
 opt.updatetime = 50
-opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+opt.completeopt = { 'menuone', 'noselect', 'noinsert' }

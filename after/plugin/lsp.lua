@@ -11,7 +11,6 @@ require('mason-lspconfig').setup({
     'clangd',
     'lua_ls',
     'rust_analyzer',
-    'tsserver',
     'angularls',
     'cssls',
     'docker_compose_language_service',
@@ -19,6 +18,13 @@ require('mason-lspconfig').setup({
     'html',
     'jsonls',
     'vuels',
+    'java_language_server',
+    'angularls',
+    'jsonls',
+    'lua_ls',
+    'pylsp',
+    'sqlls',
+    'ts_ls'
   },
   handlers = {
     lsp_zero.default_setup,
