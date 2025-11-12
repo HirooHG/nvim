@@ -83,6 +83,8 @@ return {
       { "<leader>fr", "<cmd>lua vim.lsp.buf.references()<CR>",     mode = "n" },
       { "<leader>de", "<cmd>lua vim.lsp.buf.definition()<CR>",     mode = "n" },
       { "<leader>re", "<cmd>lua vim.lsp.buf.rename()<CR>",         mode = "n" },
+      { "<leader>re", "<cmd>lua vim.lsp.buf.rename()<CR>",         mode = "n" },
+      { "<leader>di", "<cmd>lua vim.diagnostic.open_float()<CR>",  mode = "n" },
     },
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
