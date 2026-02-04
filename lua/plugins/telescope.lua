@@ -3,7 +3,8 @@ return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     keys = {
-      { "<leader>fc", "<cmd>Telescope flutter commands<cr>", mode = "n" }
+      { "<leader>fc", "<cmd>Telescope flutter commands<cr>", mode = "n" },
+      { "<leader>a",  "<cmd>Telescope find_files<cr>",       mode = "n" }
     },
     dependencies = {
       { "nvim-lua/popup.nvim" },
@@ -31,46 +32,24 @@ return {
       },
     },
     config = function()
-      local actions = require('telescope.actions')
-      local previewers = require('telescope.previewers')
-
       require('telescope').setup {
-        defaults = {
-          file_sorter      = require('telescope.sorters').get_fzy_sorter,
-          prompt_prefix    = ' ',
-          color_devicons   = true,
-
-          file_previewer   = previewers.vim_buffer_cat.new,
-          grep_previewer   = previewers.vim_buffer_vimgrep.new,
-          qflist_previewer = previewers.vim_buffer_qflist.new,
-
-          mappings         = {
-            i = {
-              ["<C-q>"] = actions.smart_send_to_qflist,
-            },
-            n = {
-              ["<C-q>"] = actions.smart_send_to_qflist,
-              ["<C-a>"] = actions.select_all,
-              ["<C-s>"] = actions.toggle_selection,
-              ["<C-d>"] = actions.drop_all,
-            },
-          }
-        },
-        extensions = {
-          fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
-          },
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown {}
+        pickers = {
+          find_files = {
+            theme = "ivy"
           }
         }
       }
 
+      vim.keymap.set("n", "<leader>en", function()
+        require('telescope.builtin').find_files {
+          cwd = vim.fn.stdpath("config")
+        }
+      end)
+
       require('telescope').load_extension('fzy_native')
       require('telescope').load_extension('session-lens')
       require('telescope').load_extension('git_worktree')
-      require("telescope").load_extension("ui-select")
+      require('telescope').load_extension("ui-select")
       require('telescope').load_extension('flutter')
     end,
     event = "VeryLazy"

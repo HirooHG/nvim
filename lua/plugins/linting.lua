@@ -4,6 +4,16 @@ return {
     "BufReadPre",
     "BufNewFile"
   },
+  keys = {
+    {
+      "<leader>li",
+      function()
+        require("lint").try_lint()
+      end,
+      mode = "n",
+      desc = "Trigger linting for current file"
+    }
+  },
   config = function()
     local lint = require("lint")
 
@@ -14,7 +24,6 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "pylint" },
-      kotlin = { "ktlint" },
       bash = { "shellcheck" },
     }
 
@@ -32,8 +41,5 @@ return {
           lint.try_lint()
         end,
       })
-    vim.keymap.set("n", "<leader>li", function()
-      lint.try_lint()
-    end, { desc = "Trigger linting for current file" })
   end
 }

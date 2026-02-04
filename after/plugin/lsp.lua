@@ -3,7 +3,6 @@ local cmp = require('cmp')
 local map = vim.keymap.set
 local cmp_select = { behavior = cmp.SelectBehavior.Replace }
 local cmp_action = require('lsp-zero').cmp_action()
-local rust_tools = require('rust-tools')
 
 require('mason-lspconfig').setup({
   ensure_installed = {
@@ -13,6 +12,7 @@ require('mason-lspconfig').setup({
     'angularls',
     'cssls',
     'docker_compose_language_service',
+    'kotlin_language_server',
     'dockerls',
     'html',
     'vuels',
@@ -24,7 +24,19 @@ require('mason-lspconfig').setup({
   handlers = {
     lsp_zero.default_setup,
     clangd = lsp_zero.noop,
-    rust_analyzer = lsp_zero.noop
+    rust_analyzer = lsp_zero.noop,
+    kotlin_language_server = function()
+      require('lspconfig').kotlin_language_server.setup({
+        root_dir = require('lspconfig').util.root_pattern("settings.gradle", "settings.gradle.kts", "build.gradle.kts"),
+        settings = {
+          kotlin = {
+            compiler = {
+              jvm = { target = "21" },
+            },
+          },
+        },
+      })
+    end
   },
 })
 
@@ -35,7 +47,8 @@ require("mason-tool-installer").setup({
     'black',
     'isort',
     'pylint',
-    'eslint_d'
+    'eslint_d',
+    'ktfmt'
   }
 })
 
@@ -104,3 +117,8 @@ lsp_zero.on_attach(function(_, bufnr)
 end)
 
 lsp_zero.setup()
+
+vim.diagnostic.enable()
+vim.diagnostic.config({
+  virtual_text = true,
+});
