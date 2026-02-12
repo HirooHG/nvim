@@ -79,12 +79,11 @@ return {
     branch = 'v3.x',
     keys = {
       { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>",    mode = "n" },
-      { "<leader>fi", "<cmd>lua vim.lsp.buf.implementation()<CR>", mode = "n" },
-      { "<leader>fr", "<cmd>lua vim.lsp.buf.references()<CR>",     mode = "n" },
-      { "<leader>de", "<cmd>lua vim.lsp.buf.definition()<CR>",     mode = "n" },
       { "<leader>re", "<cmd>lua vim.lsp.buf.rename()<CR>",         mode = "n" },
-      { "<leader>re", "<cmd>lua vim.lsp.buf.rename()<CR>",         mode = "n" },
-      { "<leader>di", "<cmd>lua vim.diagnostic.open_float()<CR>",  mode = "n" },
+      { "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", mode = "n" },
+      { "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>",     mode = "n" },
+      { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>",     mode = "n" },
+      { "<leader>lc", "<cmd>lua vim.diagnostic.open_float()<CR>",  mode = "n" },
     },
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },

@@ -55,7 +55,7 @@ return {
         last_indent_marker = "└",
         highlight = "NeoTreeIndentMarker",
         -- expander config, needed for nesting files
-        with_expanders = nil,   -- if nil and file nesting is enabled, will enable expanders
+        with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
         expander_collapsed = "",
         expander_expanded = "",
         expander_highlight = "NeoTreeExpander",
@@ -98,7 +98,7 @@ return {
         nowait = true,
       },
       mappings = {
-        ["<C-c>"] = "open",
+        ["e"] = "open",
         ["P"] = { "toggle_preview", config = { use_float = true } },
         ["S"] = "open_split",
         ["s"] = "open_vsplit",
@@ -137,7 +137,7 @@ return {
           ["H"] = "toggle_hidden",
           ["/"] = "fuzzy_finder",
           ["D"] = "fuzzy_finder_directory",
-          ["#"] = "fuzzy_sorter",   -- fuzzy sorting using the fzy algorithm
+          ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
           -- ["D"] = "fuzzy_sorter_directory",
           ["f"] = "filter_on_submit",
           ["<c-x>"] = "clear_filter",

@@ -6,14 +6,14 @@ return {
     'stevearc/dressing.nvim'
   },
   keys = {
-    { "<leader>fpg",  "<cmd>FlutterPubGet<CR>",     mode = "n" },
-    { "<leader>fpu",  "<cmd>FlutterPubUpgrade<CR>", mode = "n" },
-    { "<leader>fq",   "<cmd>FlutterQuit<CR>",       mode = "n" },
-    { "<leader>fru",  "<cmd>FlutterRun<CR>",        mode = "n" },
-    { "<leader>fres", "<cmd>FlutterRestart<CR>",    mode = "n" },
-    { "<leader>frel", "<cmd>FlutterReload<CR>",     mode = "n" },
-    { "<leader>fd",   "<cmd>FlutterDevices<CR>",    mode = "n" },
-    { "<leader>fe",   "<cmd>FlutterEmulators<CR>",  mode = "n" },
+    { "<leader>fg", "<cmd>FlutterPubGet<CR>",     mode = "n" },
+    { "<leader>fu", "<cmd>FlutterPubUpgrade<CR>", mode = "n" },
+    { "<leader>fq", "<cmd>FlutterQuit<CR>",       mode = "n" },
+    { "<leader>fr", "<cmd>FlutterRun<CR>",        mode = "n" },
+    { "<leader>fs", "<cmd>FlutterRestart<CR>",    mode = "n" },
+    { "<leader>fl", "<cmd>FlutterReload<CR>",     mode = "n" },
+    { "<leader>fd", "<cmd>FlutterDevices<CR>",    mode = "n" },
+    { "<leader>fe", "<cmd>FlutterEmulators<CR>",  mode = "n" },
   },
   config = {
     ui = {
