@@ -1,0 +1,12 @@
+-- Configuration here: https://github.com/yetone/avante.nvim
+
+-- return {
+--   "zbirenbaum/copilot.lua",
+--   cmd = "Copilot",
+--   dependencies = {
+--     "copilotlsp-nvim/copilot-lsp"
+--   },
+--   config = function ()
+--     require("copilot").setup({})
+--   end
+-- }
