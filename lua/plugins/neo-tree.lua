@@ -6,11 +6,17 @@ return {
   branch = "v2.x",
   keys = {
     {
-      "<leader>t",
+      "<leader>tr",
       "<cmd>Neotree<CR>",
       mode = "n",
       desc = "open Neo tree"
-    }
+    },
+    {
+      "<leader>tf",
+      "<cmd>Neotree reveal_force_cwd<CR>",
+      mode = "n",
+      desc = "open Neo tree"
+    },
   },
   dependencies = {
     -- "nvim-lua/plenary.nvim",

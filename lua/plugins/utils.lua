@@ -11,15 +11,6 @@ return {
     end
   },
   {
-    "iamcco/markdown-preview.nvim",
-    keys = {
-      { "<leader>ma", "<cmd>MarkdownPreviewToggle<cr>", mode = "n" }
-    },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end
-  },
-  {
     -- list undo actions in a tree
     'mbbill/undotree',
     keys = {
@@ -61,12 +52,12 @@ return {
       ft.set("angular", { commentstr, commentstr })
 
       comment.setup({
-        padding = true,  ---Add a space b/w comment and the line
-        sticky = true,   ---Whether the cursor should stay at its position
-        ignore = nil,    ---Lines to be ignored while (un)comment
+        padding = true,       ---Add a space b/w comment and the line
+        sticky = true,        ---Whether the cursor should stay at its position
+        ignore = nil,         ---Lines to be ignored while (un)comment
         toggler = {
-          line = 'gcc',  ---Line-comment toggle keymap
-          block = 'gbc', ---Block-comment toggle keymap
+          line = '<leader>c', ---Line-comment toggle keymap
+          block = 'gbc',      ---Block-comment toggle keymap
         },
         opleader = {
           line = 'gc',  ---Line-comment keymap

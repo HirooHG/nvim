@@ -30,7 +30,8 @@ map("n", "<leader>p", "\"_dP")
 map("n", "<C-c>", "<Esc>")
 
 -- Replace a word by overiding it
-map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- lsp rename can do it easily
+-- map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- make a file executable
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
