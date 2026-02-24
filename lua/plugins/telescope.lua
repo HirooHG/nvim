@@ -3,10 +3,11 @@ return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     keys = {
-      { "<leader>af", "<cmd>Telescope flutter commands<cr>", mode = "n" },
-      { "<leader>af", "<cmd>Telescope find_files<cr>",       mode = "n" },
-      { "<leader>ag", "<cmd>Telescope live_grep<cr>",        mode = "n" },
-      { "<leader>ah", "<cmd>Telescope harpoon marks<cr>",    mode = "n" }
+      { "<leader>sf", "<cmd>Telescope flutter commands<cr>", mode = "n" },
+      { "<leader>sf", "<cmd>Telescope find_files<cr>",       mode = "n" },
+      { "<leader>sg", "<cmd>Telescope live_grep<cr>",        mode = "n" },
+      { "<leader>sh", "<cmd>Telescope harpoon marks<cr>",    mode = "n" },
+      { "<leader>sn", "<cmd>Telescope notify<cr>",           mode = "n" }
     },
     dependencies = {
       { "nvim-lua/popup.nvim" },
@@ -41,7 +42,7 @@ return {
           },
           live_grep = {
             theme = "ivy"
-          }
+          },
         }
       }
 
@@ -57,6 +58,7 @@ return {
       require('telescope').load_extension("ui-select")
       require('telescope').load_extension('flutter')
       require('telescope').load_extension('harpoon')
+      require('telescope').load_extension('notify')
     end,
     event = "VeryLazy"
   },
