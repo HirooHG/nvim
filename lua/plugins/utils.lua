@@ -52,16 +52,16 @@ return {
       ft.set("angular", { commentstr, commentstr })
 
       comment.setup({
-        padding = true,       ---Add a space b/w comment and the line
-        sticky = true,        ---Whether the cursor should stay at its position
-        ignore = nil,         ---Lines to be ignored while (un)comment
+        padding = true,        ---Add a space b/w comment and the line
+        sticky = true,         ---Whether the cursor should stay at its position
+        ignore = nil,          ---Lines to be ignored while (un)comment
         toggler = {
-          line = '<leader>c', ---Line-comment toggle keymap
-          block = 'gbc',      ---Block-comment toggle keymap
+          line = '<leader>co', ---Line-comment toggle keymap
+          block = 'gbc',       ---Block-comment toggle keymap
         },
         opleader = {
-          line = 'gc',  ---Line-comment keymap
-          block = 'gb', ---Block-comment keymap
+          line = '<leader>co', ---Line-comment keymap
+          block = 'gb',        ---Block-comment keymap
         },
         extra = {
           above = 'gcO', ---Add comment on the line above
@@ -71,4 +71,17 @@ return {
       })
     end
   },
+  -- mongo db TUI
+  {
+    "kopecmaciej/vi-mongo.nvim",
+    config = function()
+      require("vi-mongo").setup({
+        persist = false, -- default: false; set to true to persist the connection between float window sessions
+      })
+    end,
+    cmd = { "ViMongo" },
+    keys = {
+      { "<leader>vm", "<cmd>ViMongo<cr>", desc = "ViMongo" }
+    }
+  }
 }
