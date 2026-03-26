@@ -23,6 +23,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
+    lazy = false,
     keys = {
       { "<leader>gh",  "<cmd>Gitsigns preview_hunk<CR>",              mode = "n" },
       { "<leader>gbl", "<cmd>Gitsigns toggle_current_line_blame<CR>", mode = "n" }
