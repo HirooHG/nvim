@@ -11,18 +11,18 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    lazy = false,
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
     build = "make tiktoken",
     keys = {
-      { "<leader>cpo", "<CMD>CopilotChatToggle<CR>", mode = "x" },
-      { "<leader>cpc", "<CMD>CopilotChatToggle<CR>", mode = "x" },
-      { "<leader>cps", "<CMD>CopilotChatStop<CR>",   mode = "x" },
-      { "<leader>cpr", "<CMD>CopilotChatReset<CR>",  mode = "x" },
-      { "<leader>cpa", "<CMD>CopilotChatSave<CR>",   mode = "x" },
-      { "<leader>cpl", "<CMD>CopilotChatLoad<CR>",   mode = "x" },
-      { "<leader>cpi", "<CMD>CopilotChatInline<CR>", mode = "x" },
+      { "<leader>cpo", "<CMD>CopilotChatToggle<CR>", mode = { "n", "v" } },
+      { "<leader>cps", "<CMD>CopilotChatStop<CR>",   mode = "n" },
+      { "<leader>cpr", "<CMD>CopilotChatReset<CR>",  mode = "n" },
+      { "<leader>cpa", "<CMD>CopilotChatSave<CR>",   mode = "n" },
+      { "<leader>cpl", "<CMD>CopilotChatLoad<CR>",   mode = "n" },
+      { "<leader>cpi", "<CMD>CopilotChatInline<CR>", mode = { "n", "v", "x" } },
     },
     opts = {
       model = 'claude-haiku-4.5',

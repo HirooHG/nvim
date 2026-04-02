@@ -8,6 +8,13 @@ map("n", "<leader>w", "<cmd>wq<CR>")
 map("n", "<leader>q", "<cmd>q!<CR>")
 map("n", "<leader>v", "<C-v>")
 
+map("n", "<leader>j", "<C-w>j")
+map("n", "<leader>k", "<C-w>k")
+map("n", "<leader>wh", "<C-w>h")
+map("n", "<leader>wl", "<C-w>l")
+map("n", "<leader>ws", "<C-w>s")
+map("n", "<leader>wv", "<cmd>vs<cr>")
+
 -- move paragraph of text
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
