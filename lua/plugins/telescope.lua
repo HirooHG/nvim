@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    version = '*',
     keys = {
       { "<leader>sf", "<cmd>Telescope flutter commands<cr>", mode = "n" },
       { "<leader>sf", "<cmd>Telescope find_files<cr>",       mode = "n" },
@@ -16,15 +16,6 @@ return {
       { "to268/telescope-doc.nvim" },
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-telescope/telescope-fzy-native.nvim" },
-      { "ThePrimeagen/git-worktree.nvim" },
-      {
-        "ThePrimeagen/refactoring.nvim",
-        opts = {},
-        dependencies = {
-          "nvim-lua/plenary.nvim",
-          "nvim-treesitter/nvim-treesitter"
-        },
-      },
       {
         "rmagatti/session-lens",
         dependencies = { "rmagatti/auto-session" },
@@ -54,7 +45,6 @@ return {
 
       require('telescope').load_extension('fzy_native')
       require('telescope').load_extension('session-lens')
-      require('telescope').load_extension('git_worktree')
       require('telescope').load_extension("ui-select")
       require('telescope').load_extension('flutter')
       require('telescope').load_extension('harpoon')

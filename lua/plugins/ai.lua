@@ -22,7 +22,6 @@ return {
       { "<leader>cpr", "<CMD>CopilotChatReset<CR>",  mode = "n" },
       { "<leader>cpa", "<CMD>CopilotChatSave<CR>",   mode = "n" },
       { "<leader>cpl", "<CMD>CopilotChatLoad<CR>",   mode = "n" },
-      { "<leader>cpi", "<CMD>CopilotChatInline<CR>", mode = { "n", "v", "x" } },
     },
     opts = {
       model = 'claude-haiku-4.5',
