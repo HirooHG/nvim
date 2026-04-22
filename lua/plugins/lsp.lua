@@ -1,44 +1,80 @@
 return {
   {
-    "williamboman/mason.nvim",
-    dependencies = {
-      { "WhoIsSethDaniel/mason-tool-installer.nvim" }
-    },
-    build = function()
-      local mason = require("mason")
-      mason.setup({
-        ui = {
-          icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
-          }
+    "mason-org/mason.nvim",
+    lazy = false,
+    version = "*",
+    opts = {
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
         }
-      })
-      pcall(vim.cmd, "MasonUpdate")
-    end,
-    lazy = false
+      }
+    }
+  },
+  {
+    'mason-org/mason-lspconfig.nvim',
+    version = "*",
+    lazy = false,
+    dependencies = {
+      'mason-org/mason.nvim',
+      'neovim/nvim-lspconfig',
+    },
+    opts = {
+      ensure_installed = {
+        'html',
+        'cssls',
+        'ts_ls',
+        'angularls',
+        'tailwindcss',
+        'jsonls',
+        'pylsp',
+        'kotlin_language_server',
+        'sqlls',
+        'dockerls',
+        'docker_compose_language_service',
+        'bashls',
+        'clangd',
+        'rust_analyzer',
+      },
+    }
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim"
+    },
+    opts = {
+      ensure_installed = {
+        'prettier',
+        'isort',
+        'black',
+        'isort',
+        'pylint',
+        'eslint_d',
+        'ktfmt'
+      }
+    }
   },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      "hrsh7th/cmp-nvim-lua",
-      'rafamadriz/friendly-snippets',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
       'neovim/nvim-lspconfig',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      "hrsh7th/nvim-cmp",
+      "petertriho/cmp-git",
+
       'hrsh7th/cmp-vsnip',
       'hrsh7th/vim-vsnip',
+
+      "onsails/lspkind.nvim",
     },
     lazy = false
-  },
-  {
-    "saecki/crates.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {},
-    event = "VeryLazy"
   },
   {
     'neovim/nvim-lspconfig',
@@ -68,40 +104,8 @@ return {
           },
         },
       },
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
       'folke/neodev.nvim',
     },
     lazy = false
   },
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    keys = {
-      { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>",    mode = "n" },
-      { "<leader>re", "<cmd>lua vim.lsp.buf.rename()<CR>",         mode = "n" },
-      { "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", mode = "n" },
-      { "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>",     mode = "n" },
-      { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>",     mode = "n" },
-      { "<leader>lc", "<cmd>lua vim.diagnostic.open_float()<CR>",  mode = "n" },
-    },
-    dependencies = {
-      { "williamboman/mason.nvim", opts = {} },
-      'williamboman/mason-lspconfig.nvim',
-      'saecki/crates.nvim',
-      "onsails/lspkind.nvim",
-
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      "f3fora/cmp-spell",
-      "ray-x/lsp_signature.nvim",
-      "hrsh7th/cmp-calc",
-      "hrsh7th/nvim-cmp",
-
-      -- Snippets
-      'simrat39/rust-tools.nvim',
-      'akinsho/flutter-tools.nvim'
-    },
-    event = "InsertEnter"
-  }
 }

@@ -1,89 +1,50 @@
-local lsp_zero = require('lsp-zero')
 local cmp = require('cmp')
-local map = vim.keymap.set
 local cmp_select = { behavior = cmp.SelectBehavior.Replace }
-local cmp_action = require('lsp-zero').cmp_action()
 
-require('mason-lspconfig').setup({
-  ensure_installed = {
-    'bashls',
-    'clangd',
-    'rust_analyzer',
-    'angularls',
-    'cssls',
-    'docker_compose_language_service',
-    'kotlin_language_server',
-    'dockerls',
-    'html',
-    'vuels',
-    'jsonls',
-    'pylsp',
-    'sqlls',
-    'ts_ls',
-    'tailwindcss'
-  },
-  handlers = {
-    lsp_zero.default_setup,
-    clangd = lsp_zero.noop,
-    rust_analyzer = lsp_zero.noop,
-    kotlin_language_server = function()
-      require('lspconfig').kotlin_language_server.setup({
-        root_dir = require('lspconfig').util.root_pattern("settings.gradle", "settings.gradle.kts", "build.gradle.kts"),
-        settings = {
-          kotlin = {
-            compiler = {
-              jvm = { target = "25" },
-            },
-          },
-        },
-      })
-    end
-  },
-})
-
-require("mason-tool-installer").setup({
-  ensure_installed = {
-    'prettier',
-    'isort',
-    'black',
-    'isort',
-    'pylint',
-    'eslint_d',
-    'ktfmt'
-  }
-})
+local lsp = vim.lsp
+local opt = vim.opt
+local api = vim.api
+local fn = vim.fn
+local keymap = vim.keymap
+local diagnostic = vim.diagnostic
 
 cmp.setup({
-  sources = {
-    { name = 'path' },
-    { name = 'calc' },
-    { name = 'crates' },
-    { name = 'spell' },
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'buffer',  keyword_length = 3 },
-    { name = 'luasnip', keyword_length = 2 },
+  snippet = {
+    expand = function(args)
+      fn["vsnip#anonymous"](args.body)
+    end,
   },
-  mapping = {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'buffer' },
+  }),
+  mapping = cmp.mapping.preset.insert({
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['²'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-s>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<TAB>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<C-TAB>'] = cmp.mapping.complete(),
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-u>'] = cmp.mapping.scroll_docs(4),
-  },
-  -- FIXME: This is not working as it should
+  }),
   formatting = {
-    fields = { 'abbr', 'kind', 'menu' },
+    fields = { 'abbr', 'kind', 'menu', 'icon' },
     format = require('lspkind').cmp_format({
-      mode = 'symbol',
-      preset = 'codicons',
-      maxwidth = 50,
-      ellipsis_char = '...',
+      maxwidth = {
+        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        -- can also be a function to dynamically calculate max width such as
+        -- menu = function() return math.floor(0.45 * vim.o.columns) end,
+        menu = 50,              -- leading text (labelDetails)
+        abbr = 50,              -- actual suggestion item
+      },
+      ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+      show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+      -- The function below will be called before any actual modifications from lspkind
+      -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+      before = function(_, vim_item)
+        return vim_item
+      end
     })
   },
   window = {
@@ -92,55 +53,100 @@ cmp.setup({
   }
 })
 
-lsp_zero.on_attach(function(_, bufnr)
-  local opts = { buffer = bufnr, silent = true, remap = false }
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'git' },
+  }, {
+    { name = 'buffer' },
+  })
+})
+require("cmp_git").setup()
 
-  map("n", "<leader>vds", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>", opts)
-  map("n", "<leader>vws", ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols{}<CR>", opts)
-  map("n", "<leader>vr", ":lua require('telescope.builtin').lsp_references{}<CR>", opts)
-  map("n", "<leader>vn", ":lua vim.lsp.buf.rename()<CR>", opts)
-  map("n", "<leader>va", ":lua vim.lsp.buf.code_action()<CR>", opts)
-  map("n", "<leader>vi", ":lua vim.lsp.buf.implementations()<CR>", opts)
-  map("n", "<leader>vd", ":lua vim.lsp.buf.definition()<CR>", opts)
-  map("n", "<leader>vh", ":lua vim.lsp.buf.hover()<CR>", opts)
-  map("n", "<leader>vt", ":lua vim.lsp.buf.type_definition()<CR>", opts)
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
 
-  require("lsp_signature").on_attach({
-    hint_enable = false,
-    hint_prefix = " ",
-    bind = true,
-    handler_opts = {
-      border = "rounded"
-    }
-  }, bufnr)
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  }),
+  matching = { disallow_symbol_nonprefix_matching = false }
+})
 
-  lsp_zero.default_keymaps({ buffer = bufnr })
-end)
+local lsps = {
+  'html',
+  'cssls',
+  'ts_ls',
+  'angularls',
+  'tailwindcss',
+  'jsonls',
+  'pylsp',
+  'kotlin_language_server',
+  'sqlls',
+  'dockerls',
+  'docker_compose_language_service',
+  'bashls',
+  'clangd',
+  'rust_analyzer',
+}
 
-lsp_zero.setup()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+for _, ls in ipairs(lsps) do
+  lsp.config(ls, {
+    capabilities = capabilities
+  })
+  lsp.enable(ls)
+end
 
-vim.diagnostic.enable()
-vim.diagnostic.config({
+-- lsps
+api.nvim_create_autocmd('LspAttach', {
+  callback = function(event)
+    local bufmap = function(mode, rhs, lhs)
+      local opts = { buffer = event.buf, silent = true, remap = false }
+      keymap.set(mode, rhs, lhs, opts)
+    end
+
+    bufmap("n", "<leader>vds", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>")
+    bufmap("n", "<leader>vws", ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols{}<CR>")
+    bufmap("n", "<leader>vr", ":lua require('telescope.builtin').lsp_references{}<CR>")
+    bufmap("n", "<leader>vn", ":lua vim.lsp.buf.rename()<CR>")
+    bufmap("n", "<leader>va", ":lua vim.lsp.buf.code_action()<CR>")
+    bufmap("n", "<leader>vi", ":lua vim.lsp.buf.implementations()<CR>")
+    bufmap("n", "<leader>vd", ":lua vim.lsp.buf.definition()<CR>")
+    bufmap("n", "<leader>vh", ":lua vim.lsp.buf.hover()<CR>")
+    bufmap("n", "<leader>vt", ":lua vim.lsp.buf.type_definition()<CR>")
+  end
+})
+
+-- inline diagnostics
+diagnostic.enable()
+diagnostic.config({
   virtual_text = true,
 });
 
--- docker compose yaml detection
-local ft_lsp_group = vim.api.nvim_create_augroup("ft_lsp_group", { clear = true })
+-- docker compose yaml detection & angular html detection
+local ft_lsp_group = api.nvim_create_augroup("ft_lsp_group", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
   pattern = { "docker-compose.yaml", "*compose.yaml" },
   group = ft_lsp_group,
   desc = "Fix the issue where the LSP does not start with docker-compose.",
   callback = function()
-    vim.opt.filetype = "yaml.docker-compose"
+    opt.filetype = "yaml.docker-compose"
   end
 })
 
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
   pattern = { "*.component.html" },
   group = ft_lsp_group,
   desc = "Fix the issue where the LSP does not start with angular.",
   callback = function()
-    vim.opt.filetype = "htmlangular"
+    opt.filetype = "htmlangular"
   end
 })
