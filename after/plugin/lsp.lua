@@ -121,6 +121,7 @@ api.nvim_create_autocmd('LspAttach', {
     bufmap("n", "<leader>ld", ":lua vim.lsp.buf.definition()<CR>")
     bufmap("n", "<leader>lh", ":lua vim.lsp.buf.hover()<CR>")
     bufmap("n", "<leader>td", ":lua vim.lsp.buf.type_definition()<CR>")
+    bufmap("n", "<leader>lc", ":lua vim.diagnostic.open_float()<CR>")
   end
 })
 
