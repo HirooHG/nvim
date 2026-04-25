@@ -112,15 +112,15 @@ api.nvim_create_autocmd('LspAttach', {
       keymap.set(mode, rhs, lhs, opts)
     end
 
-    bufmap("n", "<leader>vds", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>")
-    bufmap("n", "<leader>vws", ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols{}<CR>")
-    bufmap("n", "<leader>vr", ":lua require('telescope.builtin').lsp_references{}<CR>")
-    bufmap("n", "<leader>vn", ":lua vim.lsp.buf.rename()<CR>")
-    bufmap("n", "<leader>va", ":lua vim.lsp.buf.code_action()<CR>")
-    bufmap("n", "<leader>vi", ":lua vim.lsp.buf.implementations()<CR>")
-    bufmap("n", "<leader>vd", ":lua vim.lsp.buf.definition()<CR>")
-    bufmap("n", "<leader>vh", ":lua vim.lsp.buf.hover()<CR>")
-    bufmap("n", "<leader>vt", ":lua vim.lsp.buf.type_definition()<CR>")
+    bufmap("n", "<leader>ls", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>")
+    bufmap("n", "<leader>lw", ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols{}<CR>")
+    bufmap("n", "<leader>lr", ":lua require('telescope.builtin').lsp_references{}<CR>")
+    bufmap("n", "<leader>re", ":lua vim.lsp.buf.rename()<CR>")
+    bufmap("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
+    bufmap("n", "<leader>li", ":lua vim.lsp.buf.implementations()<CR>")
+    bufmap("n", "<leader>ld", ":lua vim.lsp.buf.definition()<CR>")
+    bufmap("n", "<leader>lh", ":lua vim.lsp.buf.hover()<CR>")
+    bufmap("n", "<leader>td", ":lua vim.lsp.buf.type_definition()<CR>")
   end
 })
 

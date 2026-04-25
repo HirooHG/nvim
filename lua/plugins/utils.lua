@@ -50,18 +50,19 @@ return {
       local commentstr = "<!--%s-->"
 
       ft.set("angular", { commentstr, commentstr })
+      ft.set("javascript", { '// %s', '// %s' })
 
       comment.setup({
-        padding = true,  ---Add a space b/w comment and the line
-        sticky = true,   ---Whether the cursor should stay at its position
-        ignore = nil,    ---Lines to be ignored while (un)comment
+        padding = true,        ---Add a space b/w comment and the line
+        sticky = true,         ---Whether the cursor should stay at its position
+        ignore = nil,          ---Lines to be ignored while (un)comment
         toggler = {
-          line = 'gcc',  ---Line-comment toggle keymap
-          block = 'gbc', ---Block-comment toggle keymap
+          line = '<leader>co', ---Line-comment toggle keymap
+          block = 'gbc',       ---Block-comment toggle keymap
         },
         opleader = {
-          line = 'gc',  ---Line-comment keymap
-          block = 'gb', ---Block-comment keymap
+          line = '<leader>cb', ---Line-comment keymap
+          block = 'gb',        ---Block-comment keymap
         },
         extra = {
           above = 'gcO', ---Add comment on the line above

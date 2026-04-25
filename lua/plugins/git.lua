@@ -51,11 +51,11 @@ return {
   },
   {
     "chojs23/ec",
-    cmd = {
-      "EasyConflict",
-    },
     keys = {
-      { "<leader>ec", "<cmd>EasyConflict<cr>", desc = "Easy Conflict" }
-    }
+      { "<leader>ec", "<cmd>Ec<cr>", desc = "Easy Conflict" }
+    },
+    config = function()
+      require('ec').setup()
+    end
   },
 }

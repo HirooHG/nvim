@@ -16,4 +16,6 @@ end
 
 opt.rtp:prepend(lazypath)
 
+vim.keymap.set("n", "<leader>la", "<cmd>Lazy<cr>")
+
 return require('lazy').setup("plugins")
