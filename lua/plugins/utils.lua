@@ -42,35 +42,25 @@ return {
     }
   },
   {
-    'numToStr/Comment.nvim',
-    config = function()
-      local comment = require("Comment")
-      local ft = require("Comment.ft")
-
-      local commentstr = "<!--%s-->"
-
-      ft.set("angular", { commentstr, commentstr })
-      ft.set("javascript", { '// %s', '// %s' })
-
-      comment.setup({
-        padding = true,        ---Add a space b/w comment and the line
-        sticky = true,         ---Whether the cursor should stay at its position
-        ignore = nil,          ---Lines to be ignored while (un)comment
-        toggler = {
-          line = '<leader>co', ---Line-comment toggle keymap
-          block = 'gbc',       ---Block-comment toggle keymap
-        },
-        opleader = {
-          line = '<leader>cb', ---Line-comment keymap
-          block = 'gb',        ---Block-comment keymap
-        },
-        extra = {
-          above = 'gcO', ---Add comment on the line above
-          below = 'gco', ---Add comment on the line below
-          eol = 'gcA',   ---Add comment at the end of line
-        },
-      })
-    end
+    'nvim-mini/mini.comment',
+    branch = 'stable',
+    opts = {
+      mappings = {
+        comment = '<leader>co',
+        comment_line = '<leader>cl',
+        comment_visual = '<leader>co',
+        textobject = '<leader>co',
+      },
+    }
+    -- config = function()
+    --   local comment = require("Comment")
+    --   local ft = require("Comment.ft")
+    --
+    --   ft.angular = "<!--%s-->"
+    --   ft.typescriptreact = "{/**/}"
+    --
+    --   comment.setup()
+    -- end
   },
   -- mongo db TUI
   {
