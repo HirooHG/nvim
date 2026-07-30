@@ -24,19 +24,17 @@ return {
     opts = {
       ensure_installed = {
         'html',
-        'cssls',
         'ts_ls',
         'angularls',
-        'tailwindcss',
-        'jsonls',
         'pylsp',
         'kotlin_language_server',
-        'sqlls',
+        'postgres_lsp',
         'dockerls',
         'docker_compose_language_service',
         'bashls',
         'clangd',
         'rust_analyzer',
+        'biome',
       },
     }
   },
@@ -48,13 +46,12 @@ return {
     },
     opts = {
       ensure_installed = {
-        'prettier',
         'isort',
         'black',
         'isort',
         'pylint',
-        'eslint_d',
-        'ktfmt'
+        'ktfmt',
+        'pgformatter'
       }
     }
   },

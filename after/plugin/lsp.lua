@@ -1,6 +1,7 @@
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Replace }
 
+local fs = vim.fs
 local lsp = vim.lsp
 local opt = vim.opt
 local api = vim.api
@@ -81,26 +82,47 @@ cmp.setup.cmdline(':', {
 
 local lsps = {
   'html',
-  'cssls',
+  'css_tailwind',
   'ts_ls',
+  'biome',
   'angularls',
   'tailwindcss',
   'jsonls',
   'pylsp',
   'kotlin_language_server',
-  'sqlls',
   'dockerls',
   'docker_compose_language_service',
   'bashls',
   'clangd',
   'rust_analyzer',
+  'postgres_lsp'
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 for _, ls in ipairs(lsps) do
-  lsp.config(ls, {
+  local config = {
     capabilities = capabilities
-  })
+  }
+
+  if ls == "ts_ls" or ls == "html" or ls == "jsonls" or ls == "cssls" then
+    config.on_attach = function(client, _)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end
+  end
+
+  if ls == "tailwindcss" then
+    config.cmd = { "tailwindcss-language-server", "--stdio" }
+  end
+
+  if ls == "css_tailwind" then
+    config.cmd = { "css-language-server", "--stdio" }
+    config.filetypes = { "css", "scss", "less" }
+    ls = "cssls"
+  end
+
+  lsp.config(ls, config)
   lsp.enable(ls)
 end
 
@@ -144,10 +166,24 @@ api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 })
 
 api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-  pattern = { "*.component.html" },
+  pattern = { "*.html" },
   group = ft_lsp_group,
   desc = "Fix the issue where the LSP does not start with angular.",
   callback = function()
     opt.filetype = "htmlangular"
   end
+})
+api.nvim_create_autocmd("BufWritePre", {
+  callback = function(args)
+    local has_conform, conform = pcall(require, "conform")
+
+    if has_conform and #conform.list_formatters(args.buf) > 0 then
+      conform.format({ bufnr = args.buf, lsp_fallback = true })
+    else
+      lsp.buf.format({
+        bufnr = args.buf,
+        async = false
+      })
+    end
+  end,
 })
