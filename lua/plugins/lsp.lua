@@ -30,7 +30,7 @@ return {
         'kotlin_language_server',
         'postgres_lsp',
         'dockerls',
-        'docker_compose_language_service',
+        'yamlls',
         'bashls',
         'clangd',
         'rust_analyzer',

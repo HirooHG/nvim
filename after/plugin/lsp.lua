@@ -91,7 +91,7 @@ local lsps = {
   'pylsp',
   'kotlin_language_server',
   'dockerls',
-  'docker_compose_language_service',
+  'yamlls',
   'bashls',
   'clangd',
   'rust_analyzer',
@@ -120,6 +120,23 @@ for _, ls in ipairs(lsps) do
     config.cmd = { "css-language-server", "--stdio" }
     config.filetypes = { "css", "scss", "less" }
     ls = "cssls"
+  end
+
+  if ls == "yamlls" then
+    config.settings = {
+      yaml = {
+        schemas = {
+          ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
+            "docker-compose*.yml",
+            "docker-compose*.yaml",
+            "compose*.yml",
+            "compose*.yaml",
+          },
+        },
+        completion = true,
+        validate = true,
+      },
+    }
   end
 
   lsp.config(ls, config)
